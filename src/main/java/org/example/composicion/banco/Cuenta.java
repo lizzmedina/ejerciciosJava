@@ -1,27 +1,27 @@
-package org.example;
+package org.example.composicion.banco;
 
 import java.util.Random;
 public class Cuenta {
     private double saldoCuenta;
-    private String nombreDelTitular;
+    private Persona persona;
     private long numeroDeCuenta;
 
-    public Cuenta(double saldoCuenta, String nombreDelTitular, long numeroDeCuenta) {
+    public Cuenta(double saldoCuenta, Persona persona, long numeroDeCuenta) {
         this.saldoCuenta = saldoCuenta;
-        this.nombreDelTitular = nombreDelTitular;
+        this.persona = persona;
         this.numeroDeCuenta = numeroDeCuenta;
     }
-    public Cuenta(double saldoCuenta, String nombreDelTitular) {
-        Random random = new Random(); // crea nmro
+    public Cuenta(double saldoCuenta, Persona persona) {
+        Random random = new Random(); // crea nmro cuenta
         this.saldoCuenta = saldoCuenta;
-        this.nombreDelTitular = nombreDelTitular;
+        this.persona = persona;
         this.numeroDeCuenta = random.nextLong();
     }
     public double getSaldoCuenta() {
         return saldoCuenta;
     }
     public String getDatosCuenta() {
-        return (nombreDelTitular + saldoCuenta + numeroDeCuenta);
+        return (persona.getNombre() + saldoCuenta + numeroDeCuenta);
     }
     public long getNumeroDeCuenta() {
         return this.numeroDeCuenta;
