@@ -1,36 +1,22 @@
 package org.example.smellAndRefactor;
 
-abstract class Vehiculo {
+public abstract class Vehiculo {
+    protected int limiteInferior;
+    protected int limiteInferiorIntermedio;
+    protected int limiteSuperior;
 
-    private String tipoVehiculo;
-    private int limiteInferior;
-    private int limiteInferiorIntermedio;
-    private int limiteSuperior;
-
-    public Vehiculo() {
-
+    public Vehiculo(int limiteInferior, int limiteInferiorIntermedio, int limiteSuperior) {
+        this.limiteInferior = limiteInferior;
+        this.limiteInferiorIntermedio = limiteInferiorIntermedio;
+        this.limiteSuperior = limiteSuperior;
     }
 
-    public String getTipoVehiculo() {
-        return tipoVehiculo;
-    }
-
-    public int getLimiteInferior() {
-        return limiteInferior;
-    }
-
-    public int getLimiteInferiorIntermedio() {
-        return limiteInferiorIntermedio;
-    }
-
-    public int getLimiteSuperior() {
-        return limiteSuperior;
-    }
-
-    @Override
-    public String toString() {
-        return "Vehiculo{" +
-                "tipoVehiculo='" + tipoVehiculo + '\'' +
-                '}';
+    public int calcularComparendo(int velocidad) {
+        if (velocidad <= limiteInferior) {
+            return 0;
+        } else if (velocidad >= limiteInferiorIntermedio && velocidad <= limiteSuperior) {
+            return 1;
+        }
+        return 2;
     }
 }

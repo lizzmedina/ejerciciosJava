@@ -1,23 +1,22 @@
 package org.example.smellAndRefactor;
 
 public class Comparendo {
-    private Carro carro;
-    private Mula mula;
-    private Camion camion;
-    private Calculador calculador;
-    private Notificador notificador;
-
-    public Comparendo(){
+    public void construirFotoMulta(int velocidad, Vehiculo vehiculo) {
+        int cpa = vehiculo.calcularComparendo(velocidad);
+        String txt = enviarCorreoFotomulta(vehiculo.getClass().getSimpleName(), cpa);
+        System.out.println("----el tipo de comparendo es: " + cpa + " ----cuerpo del correo" + txt);
     }
 
-    public void construirFotoMulta(int velocidad, Vehiculo vehiculo) {
-          int cpa = calculador.calcularComparendo(velocidad, vehiculo);
-//        String txt = notificador.enviarCorreoFotomulta(vehiculo);
-//        if(cpa == -1){
-//            System.out.println("no hay calculo para el tipo de vehiculo" + vehiculo + "corre: " + txt);
-//        }else {
-//            System.out.println("----el tipo de comparendo es: " + cpa + " ----cuerpo del correo" + txt);
-//        }
-        System.out.println("hola tienes una multa");
+    private String obtenerAsunto(String tipoVehiculo) {
+        return "//asunto: comparendo " + tipoVehiculo.toLowerCase();
+    }
+
+    public String enviarCorreoFotomulta(String tipoVehiculo, int cpa) {
+        if (cpa == -1) {
+            return "enviando correo con vehiculo desconocido";
+        }
+
+        String cuerpoMensaje = "//enviando correo para el tipo " + tipoVehiculo.toLowerCase() + ".";
+        return obtenerAsunto(tipoVehiculo) + cuerpoMensaje;
     }
 }
